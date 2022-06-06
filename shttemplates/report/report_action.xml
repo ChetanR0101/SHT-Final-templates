@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_sht_invoice_s" model="ir.actions.report">
+        <field name="name">Invoice S$</field>
+        <field name="model">sht.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.invoice_s</field>
+        <field name="report_file">shttemplates.invoice_s</field>
+        <field name="print_report_name">'%s S' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+    <record id="action_report_sht_invoice_us" model="ir.actions.report">
+        <field name="name">Invoice US$</field>
+        <field name="model">sht.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.invoice_us</field>
+        <field name="report_file">shttemplates.invoice_us</field>
+        <field name="print_report_name">'%s US' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Delivery -->
+    <record id="action_report_sht_delivery_order" model="ir.actions.report">
+        <field name="name">Delivery</field>
+        <field name="model">sht.delivery</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.delivery_order</field>
+        <field name="report_file">shttemplates.delivery_order</field>
+        <field name="print_report_name">'%s_delivery_order' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_delivery"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Packing List -->
+    <record id="action_report_packing_list" model="ir.actions.report">
+        <field name="name">Packing List</field>
+        <field name="model">sht.delivery</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.packing_list</field>
+        <field name="report_file">shttemplates.packing_list</field>
+        <field name="print_report_name">'%s_packing_list' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_delivery"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Proforma Invoice -->
+    <record id="action_report_proforma_invoice" model="ir.actions.report">
+        <field name="name">Proforma Invoice</field>
+        <field name="model">sht.delivery</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.proforma_invoice</field>
+        <field name="report_file">shttemplates.proforma_invoice</field>
+        <field name="print_report_name">'%s_proforma_invoice' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_delivery"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Credit Note -->
+    <record id="action_report_credit_note" model="ir.actions.report">
+        <field name="name">Credit Note</field>
+        <field name="model">sht.delivery</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.credit_note</field>
+        <field name="report_file">shttemplates.credit_note</field>
+        <field name="print_report_name">'%s_credit_note' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_delivery"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Prepayment S-->
+    <record id="action_report_prepayment_s" model="ir.actions.report">
+        <field name="name">Prepayment S$</field>
+        <field name="model">sht.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.prepayment_s</field>
+        <field name="report_file">shttemplates.prepayment_s</field>
+        <field name="print_report_name">'%s_prepayment_s' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+    
+    <!-- Prepayment US-->
+    <record id="action_report_prepayment_us" model="ir.actions.report">
+        <field name="name">Prepayment US$</field>
+        <field name="model">sht.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">shttemplates.prepayment_us</field>
+        <field name="report_file">shttemplates.prepayment_us</field>
+        <field name="print_report_name">'%s_prepayment_us' % object.name</field>
+        <field name="binding_model_id" ref="model_sht_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="paperformat_sht" model="report.paperformat">
+        <field name="name">SHT</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">3</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">80</field>
+    </record>
+</odoo>

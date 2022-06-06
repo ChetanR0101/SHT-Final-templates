@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="credit_note">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <link rel="stylesheet" href="/shttemplates/static/src/css/main.css"/>
+                    <div class="page">
+                        
+                        <table class="table table-borderless">
+                            <tr>
+                                <td width="25%">
+                                    <p style="text-align:center;padding-top:10px;">
+                                        <img class="img" src="/shttemplates/static/src/img/SHTlogo.png" border="1" width="100%" />
+                                    </p>
+                                </td>
+                                <td width="75%" style="padding-top:0px">
+                                    <p>
+                                        <h1>Sea Hover Technologies Pte Ltd </h1>
+                                    </p>
+                                    <p class="mb-0">48 Toh Guan Road East, #04-154/155 Enterprise Hub, Singapore 608586
+                                    </p>
+                                    <p class="mb-0">Tel : (65) 62678061   Fax : (65) 62678062   Email : sales@seahover.com 
+                                    </p>
+                                    <p>Website : www.seahover.com   Co. Reg. No. : 200206293Z   GST Reg. No. : 200206293Z
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <h3 style="text-align:center"><strong>Credit Note</strong></h3>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <p> TO:</p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p> <t t-out="o.to"/> </p>
+                                        </div>
+                                    </div>
+                                    <div class="row attn">
+                                        <div class="col-3">
+                                            <p> ATTN: </p>
+                                        </div>
+                                        <div class="col-9">
+                                            <p> <t t-out="o.attn"/> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <p>DATE:</p>
+                                        </div>
+                                        <div class="col-5">
+                                            <p><t t-out="o.date"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <p>CREDIT NO:</p>
+                                        </div>
+                                        <div class="col-5">
+                                            <p><t t-out="o.co"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <p>P.O. NO:</p>
+                                        </div>
+                                        <div class="col-5">
+                                            <p><t t-out="o.po_no"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <p>PROJECT:</p>
+                                        </div>
+                                        <div class="col-5">
+                                            <p><t t-out="o.project"/></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-borderless product-table">
+                            <colgroup>
+                                <col style="width:48%;"/>
+                                <col style="width:12%;"/>
+                                <col style="width:12%;"/>
+                                <col style="width:13%;"/>
+                                <col style="width:15%;"/>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                <th scope="col">Description</th>
+                                <th scope="col">QTY</th>
+                                <th scope="col">RATE</th>
+                                <th scope="col">TAX AMT</th>
+                                <th scope="col">AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="subtotal" t-value="0"/>
+                                <t t-foreach="o.product_ids" t-as="p">
+                                    <tr>
+                                        <t t-set="amount" t-value="p.qty * p.unit_price"/>
+                                        <td><t t-out="p.desc"/></td>
+                                        <td class="text-center"><t t-out="p.qty"/></td>
+                                        <td class="text-center">$ <t t-out="p.unit_price"/></td>
+                                        <td class="text-center">$ <t t-set="tax7" t-value="amount * 0.07"/><t t-out="'%.2f'% tax7"/></td>
+                                        <td class="text-center">$
+                                            <t t-out="amount"/>
+                                            <t t-set="subtotal" t-value="subtotal + amount"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <table class="table table-borderless detail-table">
+                            <colgroup>
+                                <col style="width:60%;"/>
+                                <col style="width:25%;"/>
+                                <col style="width:15%;"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <th class="total-border">SUBTOTAL:</th>
+                                    <th class="total-border">$ <t t-out="subtotal"/></th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <th class="total-border">GST 7%:</th>
+                                    <th class="total-border">$ <t t-set="gst7" t-value="subtotal * 0.07"/><t t-out="'%.2f'% gst7"/></th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <th class="total-border">GRAND TOTAL:</th>
+                                    <th class="total-border">$ <t t-set="grandTotal" t-value="subtotal + gst7"/><t t-out="'%.2f'% grandTotal"/></th>
+                                </tr>
+                                <tr><td colspan="3" style="display: block; margin: 180px 0px;"></td></tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="2" style="text-align: center; border-top: 1px solid #000;"><p>AUTHORISED SIGNATURE</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

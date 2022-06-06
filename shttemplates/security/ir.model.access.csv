@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+shttemplates.access_sht_invoice,access.sht.invoice,shttemplates.model_sht_invoice,base.group_user,1,1,1,1
+shttemplates.access_sht_delivery,access.sht.delivery,shttemplates.model_sht_delivery,base.group_user,1,1,1,1
+shttemplates.access_sht_product,access.sht.product,shttemplates.model_sht_product,base.group_user,1,1,1,1

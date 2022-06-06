@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sht_invoice_action" model="ir.actions.act_window">
+            <field name="name">sht invoice action</field>
+            <field name="res_model">sht.invoice</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Add a new invoice
+                </p>
+            </field>
+        </record>
+        
+
+        <menuitem
+            id="sht_template_root_menu"
+            name="SHT"
+            groups="base.group_user"
+            sequence="10"/>
+        <menuitem
+            id="sht_invoice_menu"
+            name="Invoice"
+            action="sht_invoice_action"
+            parent="sht_template_root_menu"
+            groups="base.group_user"
+            sequence="10"/>
+    
+    </data>
+</odoo>
